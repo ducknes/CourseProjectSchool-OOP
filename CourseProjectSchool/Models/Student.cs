@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseProjectSchool.Models
+{
+    class Student
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Patronymic { get; set; }
+        public string ClassName { get; set; }
+        public float AveragePerformance { get; set; }
+        public float AverageAttendance { get; set; }
+
+        public Student(string name, string surname, string patronymic, string className, float averagePerformance, float averageAttendance)
+        {
+            ID = Guid.NewGuid();
+            Name = name;
+            Surname = surname;
+            Patronymic = patronymic;
+            ClassName = className;
+            AveragePerformance = averagePerformance;
+            AverageAttendance = averageAttendance;
+        }
+    }
+}
