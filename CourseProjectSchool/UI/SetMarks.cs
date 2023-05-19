@@ -75,7 +75,7 @@ namespace CourseProjectSchool.UI
                     column.Items.Add("4");
                     column.Items.Add("5");
                     dataGridView1.Columns.Add(column);
-                    dataGridView1.Rows[i].Cells[i+2].Value = marks[i];
+                    dataGridView1.Rows[i].Cells[i+2].Value = marks[i].ToString();
                 }
             }
         }
@@ -98,9 +98,40 @@ namespace CourseProjectSchool.UI
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-
+            List<Student> students = Repository.FindStudensByClassName((string)comboBoxClass.SelectedItem).ToList();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                foreach (var student in students)
+                {
+                    if (student.ID == (Guid)dataGridView1.Rows[i].Cells[0].Value)
+                    {
+                        List<int> list = new List<int>();
+                        for (int j = 2; j < dataGridView1.ColumnCount; j++)
+                        {
+                            string value = (string)dataGridView1.Rows[i].Cells[j].Value;
+                            switch (value)
+                            {
+                                case "н":
+                                    list.Add(0);
+                                    break;
+                                case "":
+                                    list.Add(1);
+                                    break;
+                                case "-":
+                                    list.Add(1);
+                                    break;
+                                default:
+                                    list.Add(int.Parse(value));
+                                    break;
+                            }
+                        }
+                        student.Marks[(string)comboBoxLesson.SelectedItem] = list;
+                    }
+                }
+            }
+            await Repository.WriteToJson(Repository.Students, Repository.STUDENTS_JSON);
         }
     }
 }
