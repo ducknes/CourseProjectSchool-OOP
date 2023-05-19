@@ -28,28 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components=new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(СlassRecord));
             comboBox1=new ComboBox();
             textBox1=new TextBox();
             filterBy=new Button();
-            findByName=new Button();
             sortViaPerformance=new Button();
-            editClass=new Button();
-            deleteClass=new Button();
             addClass=new Button();
             dataGridView1=new DataGridView();
+            Column6=new DataGridViewTextBoxColumn();
             Column1=new DataGridViewTextBoxColumn();
             Column2=new DataGridViewTextBoxColumn();
-            Column5=new DataGridViewTextBoxColumn();
+            Column5=new DataGridViewButtonColumn();
             Column3=new DataGridViewTextBoxColumn();
             Column4=new DataGridViewTextBoxColumn();
+            contextMenuStrip1=new ContextMenuStrip(components);
+            удалитьКлассToolStripMenuItem=new ToolStripMenuItem();
+            label1=new Label();
+            button1=new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled=true;
-            comboBox1.Location=new Point(712, 472);
+            comboBox1.Location=new Point(968, 355);
             comboBox1.Margin=new Padding(4, 3, 4, 3);
             comboBox1.Name="comboBox1";
             comboBox1.Size=new Size(140, 23);
@@ -57,71 +61,39 @@
             // 
             // textBox1
             // 
-            textBox1.Location=new Point(712, 435);
+            textBox1.Location=new Point(934, 216);
             textBox1.Margin=new Padding(4, 3, 4, 3);
             textBox1.Name="textBox1";
-            textBox1.Size=new Size(140, 23);
+            textBox1.Size=new Size(209, 23);
             textBox1.TabIndex=16;
+            textBox1.TextChanged+=textBox1_TextChanged;
             // 
             // filterBy
             // 
             filterBy.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            filterBy.Location=new Point(471, 468);
+            filterBy.Location=new Point(934, 318);
             filterBy.Margin=new Padding(4, 3, 4, 3);
             filterBy.Name="filterBy";
-            filterBy.Size=new Size(217, 31);
+            filterBy.Size=new Size(209, 31);
             filterBy.TabIndex=15;
             filterBy.Text="Отфильтровать по ";
             filterBy.UseVisualStyleBackColor=true;
             // 
-            // findByName
-            // 
-            findByName.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            findByName.Location=new Point(471, 430);
-            findByName.Margin=new Padding(4, 3, 4, 3);
-            findByName.Name="findByName";
-            findByName.Size=new Size(217, 31);
-            findByName.TabIndex=14;
-            findByName.Text="Поиск по назаванию";
-            findByName.UseVisualStyleBackColor=true;
-            // 
             // sortViaPerformance
             // 
             sortViaPerformance.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            sortViaPerformance.Location=new Point(206, 467);
+            sortViaPerformance.Location=new Point(932, 84);
             sortViaPerformance.Margin=new Padding(4, 3, 4, 3);
             sortViaPerformance.Name="sortViaPerformance";
-            sortViaPerformance.Size=new Size(246, 31);
+            sortViaPerformance.Size=new Size(209, 31);
             sortViaPerformance.TabIndex=13;
             sortViaPerformance.Text="Сортировать по возрастанию";
             sortViaPerformance.UseVisualStyleBackColor=true;
             // 
-            // editClass
-            // 
-            editClass.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            editClass.Location=new Point(218, 430);
-            editClass.Margin=new Padding(4, 3, 4, 3);
-            editClass.Name="editClass";
-            editClass.Size=new Size(217, 31);
-            editClass.TabIndex=12;
-            editClass.Text="Редактировать класс";
-            editClass.UseVisualStyleBackColor=true;
-            // 
-            // deleteClass
-            // 
-            deleteClass.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            deleteClass.Location=new Point(16, 468);
-            deleteClass.Margin=new Padding(4, 3, 4, 3);
-            deleteClass.Name="deleteClass";
-            deleteClass.Size=new Size(173, 31);
-            deleteClass.TabIndex=11;
-            deleteClass.Text="Удалить класс";
-            deleteClass.UseVisualStyleBackColor=true;
-            // 
             // addClass
             // 
             addClass.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            addClass.Location=new Point(15, 430);
+            addClass.Location=new Point(951, 47);
             addClass.Margin=new Padding(4, 3, 4, 3);
             addClass.Name="addClass";
             addClass.Size=new Size(173, 31);
@@ -132,18 +104,27 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows=false;
             dataGridView1.AllowUserToResizeColumns=false;
             dataGridView1.AllowUserToResizeRows=false;
             dataGridView1.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode=DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column5, Column3, Column4 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column6, Column1, Column2, Column5, Column3, Column4 });
+            dataGridView1.ContextMenuStrip=contextMenuStrip1;
             dataGridView1.Location=new Point(15, 21);
             dataGridView1.Margin=new Padding(4, 3, 4, 3);
             dataGridView1.Name="dataGridView1";
-            dataGridView1.RowHeadersVisible=false;
             dataGridView1.RowHeadersWidthSizeMode=DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridView1.Size=new Size(904, 384);
+            dataGridView1.StandardTab=true;
             dataGridView1.TabIndex=9;
+            dataGridView1.CellContentClick+=dataGridView1_CellContentClick;
+            dataGridView1.CellMouseDoubleClick+=dataGridView1_CellMouseDoubleClick;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText="ID";
+            Column6.Name="Column6";
             // 
             // Column1
             // 
@@ -159,6 +140,10 @@
             // 
             Column5.HeaderText="Список учеников";
             Column5.Name="Column5";
+            Column5.Resizable=DataGridViewTriState.True;
+            Column5.SortMode=DataGridViewColumnSortMode.Automatic;
+            Column5.Text="Просмотреть";
+            Column5.UseColumnTextForButtonValue=true;
             // 
             // Column3
             // 
@@ -170,47 +155,85 @@
             Column4.HeaderText="Средняя посещаемость";
             Column4.Name="Column4";
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { удалитьКлассToolStripMenuItem });
+            contextMenuStrip1.Name="contextMenuStrip1";
+            contextMenuStrip1.Size=new Size(153, 26);
+            // 
+            // удалитьКлассToolStripMenuItem
+            // 
+            удалитьКлассToolStripMenuItem.Name="удалитьКлассToolStripMenuItem";
+            удалитьКлассToolStripMenuItem.Size=new Size(152, 22);
+            удалитьКлассToolStripMenuItem.Text="Удалить класс";
+            удалитьКлассToolStripMenuItem.Click+=удалитьКлассToolStripMenuItem_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize=true;
+            label1.Font=new Font("Cascadia Code", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location=new Point(964, 195);
+            label1.Name="label1";
+            label1.Size=new Size(144, 18);
+            label1.TabIndex=18;
+            label1.Text="Поиск по названию";
+            // 
+            // button1
+            // 
+            button1.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location=new Point(951, 121);
+            button1.Margin=new Padding(4, 3, 4, 3);
+            button1.Name="button1";
+            button1.Size=new Size(173, 31);
+            button1.TabIndex=19;
+            button1.Text="Выставить оценки";
+            button1.UseVisualStyleBackColor=true;
+            button1.Click+=button1_Click;
+            // 
             // СlassRecord
             // 
             AutoScaleDimensions=new SizeF(7F, 15F);
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Info;
-            ClientSize=new Size(933, 519);
+            ClientSize=new Size(1156, 421);
+            Controls.Add(button1);
+            Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(textBox1);
             Controls.Add(filterBy);
-            Controls.Add(findByName);
             Controls.Add(sortViaPerformance);
-            Controls.Add(editClass);
-            Controls.Add(deleteClass);
             Controls.Add(addClass);
             Controls.Add(dataGridView1);
             Icon=(Icon)resources.GetObject("$this.Icon");
             Margin=new Padding(4, 3, 4, 3);
             Name="СlassRecord";
             StartPosition=FormStartPosition.CenterScreen;
-            Text="СlassRecord";
+            Text="Учет классов";
             FormClosing+=СlassRecord_FormClosing;
+            Load+=СlassRecord_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button filterBy;
-        private System.Windows.Forms.Button findByName;
-        private System.Windows.Forms.Button sortViaPerformance;
-        private System.Windows.Forms.Button editClass;
-        private System.Windows.Forms.Button deleteClass;
-        private System.Windows.Forms.Button addClass;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private ComboBox comboBox1;
+        private TextBox textBox1;
+        private Button filterBy;
+        private Button sortViaPerformance;
+        private Button addClass;
+        private DataGridView dataGridView1;
+        private Label label1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem удалитьКлассToolStripMenuItem;
+        private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewButtonColumn Column5;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private Button button1;
     }
 }

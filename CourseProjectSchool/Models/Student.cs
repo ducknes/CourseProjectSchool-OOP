@@ -13,18 +13,16 @@ namespace CourseProjectSchool.Models
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public string ClassName { get; set; }
-        public float AveragePerformance { get; set; }
+        public Dictionary<string, List<int>> Marks { get; set; } = new Dictionary<string, List<int>>();
         public float AverageAttendance { get; set; }
 
-        public Student(string name, string surname, string patronymic, string className, float averagePerformance, float averageAttendance)
+        public Student(string name, string surname, string patronymic, string className)
         {
             ID = Guid.NewGuid();
             Name = name;
             Surname = surname;
             Patronymic = patronymic;
             ClassName = className;
-            AveragePerformance = averagePerformance;
-            AverageAttendance = averageAttendance;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseProjectSchool.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,8 @@ namespace CourseProjectSchoool
 
         private async void Init_Load(object sender, EventArgs e)
         {
+            Repository.InitClassesFile();
+            Repository.InitStudentFile();
             // await End();
         }
 
