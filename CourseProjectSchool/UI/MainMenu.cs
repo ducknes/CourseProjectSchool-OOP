@@ -1,4 +1,5 @@
 ﻿using CourseProjectSchool.DB;
+using CourseProjectSchool.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,6 +43,20 @@ namespace CourseProjectSchoool
             СlassRecord сlassRecord = new СlassRecord();
             сlassRecord.Show();
             this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы уверены что хотите удалиттьв всю базу данных???", "Предупреждение", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Repository.DeleteAll();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Report report = new Report();
+            report.Show();
         }
     }
 }

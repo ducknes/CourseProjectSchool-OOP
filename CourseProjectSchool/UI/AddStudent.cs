@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,6 +31,24 @@ namespace CourseProjectSchool.UI
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            surnameTB.BackColor = Color.White;
+            nameTB.BackColor = Color.White;
+            patronymicTB.BackColor = Color.White;
+            if (!CheckStringSurname(surnameTB.Text))
+            {
+                surnameTB.BackColor = Color.Red;
+                return;
+            }
+            if (!CheckStringNamePatrononic(nameTB.Text))
+            {
+                nameTB.BackColor = Color.Red;
+                return;
+            }
+            if (!CheckStringNamePatrononic(patronymicTB.Text))
+            {
+                patronymicTB.BackColor = Color.Red;
+                return;
+            }
             Student student = new Student(nameTB.Text, surnameTB.Text, patronymicTB.Text, comboBox2.Text);
             foreach (var item in SchoolClass.Lessons)
             {
@@ -45,5 +64,21 @@ namespace CourseProjectSchool.UI
 
         }
 
+        private void surnameTB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool CheckStringSurname(string surname)
+        {
+            Regex regex = new Regex(@"^[а-яА-Я-]+$");
+            return regex.IsMatch(surname);
+        }
+
+        private bool CheckStringNamePatrononic(string str)
+        {
+            Regex regex = new Regex(@"^[а-яА-Я]+$");
+            return regex.IsMatch(str);
+        }
     }
 }

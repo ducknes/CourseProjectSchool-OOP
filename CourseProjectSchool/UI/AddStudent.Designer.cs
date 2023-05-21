@@ -98,6 +98,7 @@
             surnameTB.Name="surnameTB";
             surnameTB.Size=new Size(121, 23);
             surnameTB.TabIndex=19;
+            surnameTB.TextChanged+=surnameTB_TextChanged;
             // 
             // label1
             // 

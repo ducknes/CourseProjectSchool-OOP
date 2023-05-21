@@ -46,6 +46,7 @@
             удалитьКлассToolStripMenuItem=new ToolStripMenuItem();
             label1=new Label();
             button1=new Button();
+            filterClear=new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -53,7 +54,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled=true;
-            comboBox1.Location=new Point(968, 355);
+            comboBox1.Location=new Point(966, 342);
             comboBox1.Margin=new Padding(4, 3, 4, 3);
             comboBox1.Name="comboBox1";
             comboBox1.Size=new Size(140, 23);
@@ -71,13 +72,14 @@
             // filterBy
             // 
             filterBy.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            filterBy.Location=new Point(934, 318);
+            filterBy.Location=new Point(932, 305);
             filterBy.Margin=new Padding(4, 3, 4, 3);
             filterBy.Name="filterBy";
             filterBy.Size=new Size(209, 31);
             filterBy.TabIndex=15;
             filterBy.Text="Отфильтровать по ";
             filterBy.UseVisualStyleBackColor=true;
+            filterBy.Click+=filterBy_Click;
             // 
             // sortViaPerformance
             // 
@@ -198,12 +200,24 @@
             button1.UseVisualStyleBackColor=true;
             button1.Click+=button1_Click;
             // 
+            // filterClear
+            // 
+            filterClear.Font=new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            filterClear.Location=new Point(958, 369);
+            filterClear.Name="filterClear";
+            filterClear.Size=new Size(156, 28);
+            filterClear.TabIndex=20;
+            filterClear.Text="Сбросить фильтрацию";
+            filterClear.UseVisualStyleBackColor=true;
+            filterClear.Click+=filterClear_Click;
+            // 
             // СlassRecord
             // 
             AutoScaleDimensions=new SizeF(7F, 15F);
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Info;
             ClientSize=new Size(1150, 421);
+            Controls.Add(filterClear);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(comboBox1);
@@ -243,5 +257,6 @@
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private Button button1;
+        private Button filterClear;
     }
 }

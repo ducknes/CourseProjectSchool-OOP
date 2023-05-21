@@ -165,5 +165,53 @@ namespace CourseProjectSchoool
                 iterator++;
             }
         }
+
+        private void filterBy_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                find.Enabled = false;
+                sortViaAlfabet.Enabled = false;
+                List<Student> schoolClasses = Repository.GetStudentsWithSelectedAveragePerformance().ToList();
+                dataGridView1.Rows.Clear();
+                int iterator = 0;
+                foreach (var item in schoolClasses)
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
+                    dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
+                    dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
+                    dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
+                    dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
+                    iterator++;
+                }
+            }
+            if (comboBox1.SelectedIndex == 1)
+            {
+                find.Enabled = false;
+                sortViaAlfabet.Enabled = false;
+                List<Student> schoolClasses = Repository.GetStudentsWithSelectedAverageAttendance().ToList();
+                dataGridView1.Rows.Clear();
+                int iterator = 0;
+                foreach (var item in schoolClasses)
+                {
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
+                    dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
+                    dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
+                    dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
+                    dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
+                    iterator++;
+                }
+            }
+        }
+
+        private void filterClear_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = -1;
+            find.Enabled = true;
+            sortViaAlfabet.Enabled = true;
+            UpdateTable();
+        }
     }
 }

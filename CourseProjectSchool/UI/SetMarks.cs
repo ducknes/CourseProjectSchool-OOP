@@ -14,6 +14,10 @@ namespace CourseProjectSchool.UI
 {
     public partial class SetMarks : Form
     {
+
+        public delegate void UpdateDelegate();
+        public event UpdateDelegate UpdateClassesTableEvent;
+
         public SetMarks()
         {
             InitializeComponent();
@@ -55,10 +59,12 @@ namespace CourseProjectSchool.UI
                 return;
             }
             dataGridView1.Rows.Clear();
-            for (int i = 2; i < dataGridView1.ColumnCount; i++)
+            int countColumns = dataGridView1.ColumnCount - 2;
+            for (int i = 0; i < countColumns; i++)
             {
-                dataGridView1.Columns.RemoveAt(i);
+                dataGridView1.Columns.RemoveAt(2);
             }
+            dataGridView1.Refresh();
 
             foreach (var student in students)
             {
@@ -100,7 +106,7 @@ namespace CourseProjectSchool.UI
                             dataGridView1.Rows[row].Cells[i + 2].Value = mark.ToString();
                             break;
                     }
-                   
+
                 }
                 row++;
             }
@@ -154,9 +160,17 @@ namespace CourseProjectSchool.UI
                             }
                         }
                         student.Marks[(string)comboBoxLesson.SelectedItem] = list;
+                        float _ = Repository.GetAverageStudentPerformance(student.ID);
+                        float __ = Repository.CountAverageAttendance(student.ID);
+                        UpdateClassesTableEvent?.Invoke();
                     }
                 }
             }
+        }
+
+        private void SetMarks_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            UpdateClassesTableEvent?.Invoke();
         }
     }
 }

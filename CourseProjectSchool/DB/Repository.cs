@@ -1,4 +1,5 @@
 ﻿using CourseProjectSchool.Models;
+using CourseProjectSchool.UI;
 using Microsoft.EntityFrameworkCore.Sqlite.Query.Internal;
 using Newtonsoft.Json;
 using System;
@@ -17,9 +18,11 @@ namespace CourseProjectSchool.DB
     class Repository
     {
 
-        public static string CLASS_JSON = @"Z:\Downloads\2 курс\ООП\cp\CourseProjectSchool\DB\Classes.json";
+        public static string CLASS_JSON = @"C:\dev\projects\CourseProjectSchool\CourseProjectSchool\DB\Classes.json";
 
-        public static string STUDENTS_JSON = @"Z:\Downloads\2 курс\ООП\cp\CourseProjectSchool\DB\Students.json";
+        public static string STUDENTS_JSON = @"C:\dev\projects\CourseProjectSchool\CourseProjectSchool\DB\Students.json";
+
+        public static string REPORT_PATH = @"C:\dev\projects\CourseProjectSchool\CourseProjectSchool\Reports\отчет.docx";
 
         public static List<SchoolClass> Classes = new List<SchoolClass>();
 
@@ -39,6 +42,14 @@ namespace CourseProjectSchool.DB
             {
                 return await Task.Run(async () => 
                 JsonConvert.DeserializeObject<List<T>>(await reader.ReadToEndAsync()) ?? new List<T>());
+            }
+        }
+
+        public static async void WriteToReportFile(string file_name, string report)
+        {
+            using (StreamWriter writer = new StreamWriter(file_name, false))
+            {
+                await writer.WriteLineAsync(report);
             }
         }
 
@@ -87,7 +98,7 @@ namespace CourseProjectSchool.DB
             }
         }
 
-        public static async void UpdateStudent(Student student)
+        public static async Task UpdateStudent(Student student)
         {
             foreach (var item in Students)
             {
@@ -109,7 +120,12 @@ namespace CourseProjectSchool.DB
         public static async void DeleteClass(string name)
         {
             SchoolClass sc = FindClassByName(name);
+            List<Student> students = FindStudensByClassName(sc.Name).ToList();
             Classes.Remove(sc);
+            foreach (Student student in students)
+            {
+                Students.Remove(student);
+            }
             await WriteToJson(Classes, CLASS_JSON);
         }
 
@@ -219,6 +235,32 @@ namespace CourseProjectSchool.DB
             return schoolClass.AverageAttendance;
         }
 
-        public static void DeleteAll() { }
+        public static async void DeleteAll()
+        {
+            Classes.Clear();
+            Students.Clear();
+            await WriteToJson(Classes, CLASS_JSON);
+            await WriteToJson(Students, STUDENTS_JSON);
+        }
+
+        public static IEnumerable<SchoolClass> GetClassWithSelectedAveragePerformance()
+        {
+            return from c in Classes where c.AveragePerformance > 4.5f select c;
+        }
+
+        public static IEnumerable<SchoolClass> GetClassWithSelectedAverageAttendance()
+        {
+            return from c in Classes where c.AverageAttendance > 85.0f select c;
+        }
+
+        public static IEnumerable<Student> GetStudentsWithSelectedAveragePerformance()
+        {
+            return from s in Students where s.AveragePerformance > 4.5f select s;
+        }
+
+        public static IEnumerable<Student> GetStudentsWithSelectedAverageAttendance()
+        {
+            return from s in Students where s.AverageAttendance > 85.0f select s;
+        }
     }
 }

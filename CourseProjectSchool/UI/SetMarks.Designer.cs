@@ -34,11 +34,11 @@
             comboBoxClass=new ComboBox();
             comboBoxLesson=new ComboBox();
             dataGridView1=new DataGridView();
+            ID=new DataGridViewTextBoxColumn();
+            Column1=new DataGridViewTextBoxColumn();
             findMarks=new Button();
             addLesson=new Button();
             button1=new Button();
-            ID=new DataGridViewTextBoxColumn();
-            Column1=new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -94,6 +94,16 @@
             dataGridView1.TabIndex=4;
             dataGridView1.CellContentClick+=dataGridView1_CellContentClick;
             // 
+            // ID
+            // 
+            ID.HeaderText="ID";
+            ID.Name="ID";
+            // 
+            // Column1
+            // 
+            Column1.HeaderText="Ученик";
+            Column1.Name="Column1";
+            // 
             // findMarks
             // 
             findMarks.Font=new Font("Cascadia Code", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
@@ -128,16 +138,6 @@
             button1.UseVisualStyleBackColor=false;
             button1.Click+=button1_Click;
             // 
-            // ID
-            // 
-            ID.HeaderText="ID";
-            ID.Name="ID";
-            // 
-            // Column1
-            // 
-            Column1.HeaderText="Ученик";
-            Column1.Name="Column1";
-            // 
             // SetMarks
             // 
             AutoScaleDimensions=new SizeF(7F, 15F);
@@ -155,6 +155,7 @@
             Icon=(Icon)resources.GetObject("$this.Icon");
             Name="SetMarks";
             Text="Выставление оценок";
+            FormClosing+=SetMarks_FormClosing;
             Load+=SetMarks_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

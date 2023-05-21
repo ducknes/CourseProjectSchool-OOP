@@ -33,6 +33,7 @@
             button1=new Button();
             button2=new Button();
             button3=new Button();
+            button4=new Button();
             SuspendLayout();
             // 
             // label1
@@ -80,6 +81,20 @@
             button3.TabIndex=3;
             button3.Text="Генерация отчета о успеваемости учеников";
             button3.UseVisualStyleBackColor=true;
+            button3.Click+=button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor=Color.Red;
+            button4.Font=new Font("Cascadia Code", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.ForeColor=Color.Transparent;
+            button4.Location=new Point(587, 12);
+            button4.Name="button4";
+            button4.Size=new Size(68, 46);
+            button4.TabIndex=4;
+            button4.Text="Удалить всю базу";
+            button4.UseVisualStyleBackColor=false;
+            button4.Click+=button4_Click;
             // 
             // MainMenu
             // 
@@ -87,6 +102,7 @@
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Info;
             ClientSize=new Size(667, 420);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -104,9 +120,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private Label label1;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
     }
 }

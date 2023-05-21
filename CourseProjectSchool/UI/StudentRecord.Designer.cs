@@ -45,6 +45,7 @@
             find=new TextBox();
             comboBox1=new ComboBox();
             label1=new Label();
+            filterClear=new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
@@ -155,6 +156,7 @@
             filterBy.TabIndex=6;
             filterBy.Text="Отфильтровать по ";
             filterBy.UseVisualStyleBackColor=true;
+            filterBy.Click+=filterBy_Click;
             // 
             // find
             // 
@@ -185,12 +187,24 @@
             label1.TabIndex=9;
             label1.Text="Поиск по фамилии";
             // 
+            // filterClear
+            // 
+            filterClear.Font=new Font("Cascadia Code", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            filterClear.Location=new Point(957, 357);
+            filterClear.Name="filterClear";
+            filterClear.Size=new Size(156, 28);
+            filterClear.TabIndex=21;
+            filterClear.Text="Сбросить фильтрацию";
+            filterClear.UseVisualStyleBackColor=true;
+            filterClear.Click+=filterClear_Click;
+            // 
             // StudentRecord
             // 
             AutoScaleDimensions=new SizeF(7F, 15F);
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Info;
             ClientSize=new Size(1148, 421);
+            Controls.Add(filterClear);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(find);
@@ -228,5 +242,6 @@
         private DataGridViewButtonColumn Column5;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
+        private Button filterClear;
     }
 }
