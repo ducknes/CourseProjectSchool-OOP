@@ -64,26 +64,31 @@
             dataGridView1.RowHeadersWidthSizeMode=DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridView1.Size=new Size(904, 384);
             dataGridView1.TabIndex=0;
+            dataGridView1.CellContentClick+=dataGridView1_CellContentClick;
             dataGridView1.RowHeaderMouseDoubleClick+=dataGridView1_RowHeaderMouseDoubleClick;
             // 
             // Column6
             // 
             Column6.HeaderText="ID";
+            Column6.MinimumWidth=6;
             Column6.Name="Column6";
             // 
             // Column1
             // 
             Column1.HeaderText="ФИО";
+            Column1.MinimumWidth=6;
             Column1.Name="Column1";
             // 
             // Column2
             // 
             Column2.HeaderText="Класс";
+            Column2.MinimumWidth=6;
             Column2.Name="Column2";
             // 
             // Column5
             // 
             Column5.HeaderText="Просмотр успеваемости";
+            Column5.MinimumWidth=6;
             Column5.Name="Column5";
             Column5.Resizable=DataGridViewTriState.True;
             Column5.SortMode=DataGridViewColumnSortMode.Automatic;
@@ -93,15 +98,18 @@
             // Column3
             // 
             Column3.HeaderText="Средняя успеваемость";
+            Column3.MinimumWidth=6;
             Column3.Name="Column3";
             // 
             // Column4
             // 
             Column4.HeaderText="Средняя посещаемость";
+            Column4.MinimumWidth=6;
             Column4.Name="Column4";
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.ImageScalingSize=new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { удалитьУченикаToolStripMenuItem });
             contextMenuStrip1.Name="contextMenuStrip1";
             contextMenuStrip1.Size=new Size(167, 26);
@@ -116,7 +124,7 @@
             // addStudent
             // 
             addStudent.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            addStudent.Location=new Point(957, 60);
+            addStudent.Location=new Point(949, 60);
             addStudent.Margin=new Padding(4, 3, 4, 3);
             addStudent.Name="addStudent";
             addStudent.Size=new Size(173, 31);
@@ -128,18 +136,19 @@
             // sortViaAlfabet
             // 
             sortViaAlfabet.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            sortViaAlfabet.Location=new Point(935, 97);
+            sortViaAlfabet.Location=new Point(927, 97);
             sortViaAlfabet.Margin=new Padding(4, 3, 4, 3);
             sortViaAlfabet.Name="sortViaAlfabet";
             sortViaAlfabet.Size=new Size(217, 31);
             sortViaAlfabet.TabIndex=4;
             sortViaAlfabet.Text="Сортировать по алфавиту";
             sortViaAlfabet.UseVisualStyleBackColor=true;
+            sortViaAlfabet.Click+=sortViaAlfabet_Click;
             // 
             // filterBy
             // 
             filterBy.Font=new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            filterBy.Location=new Point(935, 291);
+            filterBy.Location=new Point(927, 291);
             filterBy.Margin=new Padding(4, 3, 4, 3);
             filterBy.Name="filterBy";
             filterBy.Size=new Size(217, 31);
@@ -149,7 +158,7 @@
             // 
             // find
             // 
-            find.Location=new Point(935, 209);
+            find.Location=new Point(927, 209);
             find.Margin=new Padding(4, 3, 4, 3);
             find.Name="find";
             find.Size=new Size(217, 23);
@@ -160,7 +169,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled=true;
-            comboBox1.Location=new Point(973, 328);
+            comboBox1.Location=new Point(964, 328);
             comboBox1.Margin=new Padding(4, 3, 4, 3);
             comboBox1.Name="comboBox1";
             comboBox1.Size=new Size(140, 23);
@@ -170,7 +179,7 @@
             // 
             label1.AutoSize=true;
             label1.Font=new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location=new Point(966, 185);
+            label1.Location=new Point(957, 185);
             label1.Name="label1";
             label1.Size=new Size(154, 21);
             label1.TabIndex=9;
@@ -181,7 +190,7 @@
             AutoScaleDimensions=new SizeF(7F, 15F);
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Info;
-            ClientSize=new Size(1168, 421);
+            ClientSize=new Size(1148, 421);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(find);

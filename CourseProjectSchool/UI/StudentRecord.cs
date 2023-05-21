@@ -30,6 +30,8 @@ namespace CourseProjectSchoool
         private void StudentRecord_Load(object sender, EventArgs e)
         {
             UpdateTable();
+            comboBox1.Items.Add("Успеваемость > 4.5");
+            comboBox1.Items.Add("Помещаемость > 85");
         }
 
         private void addStudent_Click(object sender, EventArgs e)
@@ -61,6 +63,8 @@ namespace CourseProjectSchoool
                 dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
                 dataGridView1.Rows[iterator].Cells[1].Value = studentFIO;
                 dataGridView1.Rows[iterator].Cells[2].Value = item.ClassName;
+                dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
+                dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
                 iterator++;
             }
         }
@@ -97,12 +101,68 @@ namespace CourseProjectSchoool
                     dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
                     dataGridView1.Rows[iterator].Cells[1].Value = item.Surname + " " + item.Name + " " + item.Patronymic;
                     dataGridView1.Rows[iterator].Cells[2].Value = item.ClassName;
+                    dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
+                    dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
                     iterator++;
                 }
             }
             else
             {
                 UpdateTable();
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                Student student = Repository.FindStudentByID((Guid)dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+                viewStudentMarks viewStudentMarks = new();
+                int row = 0;
+                foreach (var item in student.Marks)
+                {
+                    viewStudentMarks.dataGridView1.Rows.Add();
+                    viewStudentMarks.dataGridView1.Rows[row].Cells[0].Value = item.Key;
+                    string marks = string.Empty;
+                    foreach (var item2 in item.Value)
+                    {
+                        switch (item2)
+                        {
+                            case 0:
+                                marks += "н" + " ";
+                                break;
+                            case 1:
+                                marks += "-" + " ";
+                                break;
+                            default:
+                                marks += item2.ToString() + " ";
+                                break;
+                        }
+
+                    }
+                    viewStudentMarks.dataGridView1.Rows[row].Cells[1].Value = marks;
+                    row++;
+                }
+                viewStudentMarks.name.Text = student.Surname + " " + student.Name + " " + student.Patronymic + " " + student.ClassName;
+                viewStudentMarks.Show();
+            }
+        }
+
+        private void sortViaAlfabet_Click(object sender, EventArgs e)
+        {
+            List<Student> students = Repository.GetSortedStudents().ToList();
+            dataGridView1.Rows.Clear();
+            int iterator = 0;
+            foreach (var item in students)
+            {
+                string studentFIO = item.Surname + " " + item.Name + " " + item.Patronymic;
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
+                dataGridView1.Rows[iterator].Cells[1].Value = studentFIO;
+                dataGridView1.Rows[iterator].Cells[2].Value = item.ClassName;
+                dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
+                dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
+                iterator++;
             }
         }
     }

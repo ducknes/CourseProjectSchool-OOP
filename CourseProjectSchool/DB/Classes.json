@@ -1,10 +1,1 @@
-[
-  {
-    "ID": "a2e2ef2a-dfc5-4588-ae36-76d73d67c2da",
-    "Name": "1а"
-  },
-  {
-    "ID": "55c2ec06-1baa-41a5-8f62-7aba0c6e2fc6",
-    "Name": "1б"
-  }
-]
+[{"ID":"dc84bcec-f5ea-4939-a064-f5cb9268d825","Name":"1а","AverageAttendance":86.11111,"AveragePerformance":4.4761906},{"ID":"3d354914-e418-4ae3-95ee-3807ff691620","Name":"1б","AverageAttendance":84.61539,"AveragePerformance":4.5},{"ID":"3e523ac2-6dc0-483d-87b9-897acc8f29a1","Name":"11б","AverageAttendance":"NaN","AveragePerformance":"NaN"},{"ID":"09a35b73-adad-443c-a90c-156d1436c064","Name":"3а","AverageAttendance":"NaN","AveragePerformance":"NaN"}]

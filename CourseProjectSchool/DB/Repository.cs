@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -16,9 +17,9 @@ namespace CourseProjectSchool.DB
     class Repository
     {
 
-        public static string CLASS_JSON = @"C:\dev\projects\CourseProjectSchool\CourseProjectSchool\DB\Classes.json";
+        public static string CLASS_JSON = @"Z:\Downloads\2 курс\ООП\cp\CourseProjectSchool\DB\Classes.json";
 
-        public static string STUDENTS_JSON = @"C:\dev\projects\CourseProjectSchool\CourseProjectSchool\DB\Students.json";
+        public static string STUDENTS_JSON = @"Z:\Downloads\2 курс\ООП\cp\CourseProjectSchool\DB\Students.json";
 
         public static List<SchoolClass> Classes = new List<SchoolClass>();
 
@@ -78,6 +79,8 @@ namespace CourseProjectSchool.DB
                 if (items.ID == sc.ID)
                 {
                     items.Name = sc.Name;
+                    items.AverageAttendance = sc.AverageAttendance;
+                    items.AveragePerformance = sc.AveragePerformance;
                     await WriteToJson(Classes, CLASS_JSON);
                     return;
                 }
@@ -96,6 +99,7 @@ namespace CourseProjectSchool.DB
                     item.ClassName = student.ClassName;
                     item.Marks = student.Marks;
                     item.AverageAttendance = student.AverageAttendance;
+                    item.AveragePerformance = student.AveragePerformance;
                     await WriteToJson(Students, STUDENTS_JSON);
                     return;
                 }
@@ -130,5 +134,91 @@ namespace CourseProjectSchool.DB
         {
             return from s in Students where s.ClassName == className select s;
         }
+
+        public static IEnumerable<SchoolClass> GetSortedClasses()
+        {
+            return Classes.OrderBy(sc => int.Parse(sc.Name.Substring(0, sc.Name.Length - 1)))
+                .ThenBy(sc => sc.Name.Substring(sc.Name.Length - 1));
+        }
+
+        public static IEnumerable<Student> GetSortedStudents()
+        {
+            return Students.OrderBy(s => s.Surname);
+        }
+
+        public static float GetAverageStudentPerformance(Guid id)
+        {
+            Student student = FindStudentByID(id);
+            float sumMarks = 0;
+            float countMarks = 0;
+            foreach (var item in student.Marks)
+            {
+                foreach (var elem in item.Value)
+                {
+                    switch (elem)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            break;
+                        default:
+                            sumMarks += elem;
+                            countMarks++;
+                            break;
+                    }
+                }
+            }
+            student.AveragePerformance = sumMarks / countMarks;
+            return sumMarks / countMarks;
+        }
+
+        public static float CountAverageAttendance(Guid id)
+        {
+            Student student = FindStudentByID(id);
+            float sumLessons = 0;
+            float countOnLesson = 0;
+            foreach (var item in student.Marks)
+            {
+                foreach (var elem in item.Value)
+                {
+                    switch (elem)
+                    {
+                        case 0:
+                            sumLessons++;
+                            break;
+                        case 1:
+                            sumLessons++;
+                            countOnLesson++;
+                            break;
+                        default:
+                            sumLessons++;
+                            countOnLesson++;
+                            break;
+                    }
+                }
+            }
+            student.AverageAttendance = (countOnLesson / sumLessons) * 100f;
+            return (countOnLesson / sumLessons) * 100f;
+        }
+
+        public static float GetAverageClassPerformance(Guid id)
+        {
+            SchoolClass schoolClass = FindClassById(id.ToString());
+            float sumPerf = Students.Where(s => s.ClassName == schoolClass.Name).Sum(s => s.AveragePerformance);
+            float count = Students.Where(s => s.ClassName == schoolClass.Name).Count();
+            schoolClass.AveragePerformance = sumPerf / count;
+            return schoolClass.AveragePerformance;
+        }
+
+        public static float GetAverageClassAttendance(Guid id)
+        {
+            SchoolClass schoolClass = FindClassById(id.ToString());
+            float sumPerf = Students.Where(s => s.ClassName == schoolClass.Name).Sum(s => s.AverageAttendance);
+            float count = Students.Where(s => s.ClassName == schoolClass.Name).Count();
+            schoolClass.AverageAttendance = sumPerf / count;
+            return schoolClass.AverageAttendance;
+        }
+
+        public static void DeleteAll() { }
     }
 }

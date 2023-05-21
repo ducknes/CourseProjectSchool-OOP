@@ -89,6 +89,7 @@
             sortViaPerformance.TabIndex=13;
             sortViaPerformance.Text="Сортировать по возрастанию";
             sortViaPerformance.UseVisualStyleBackColor=true;
+            sortViaPerformance.Click+=sortViaPerformance_Click;
             // 
             // addClass
             // 
@@ -124,21 +125,25 @@
             // Column6
             // 
             Column6.HeaderText="ID";
+            Column6.MinimumWidth=10;
             Column6.Name="Column6";
             // 
             // Column1
             // 
             Column1.HeaderText="Класс";
+            Column1.MinimumWidth=10;
             Column1.Name="Column1";
             // 
             // Column2
             // 
             Column2.HeaderText="Количество учеников";
+            Column2.MinimumWidth=10;
             Column2.Name="Column2";
             // 
             // Column5
             // 
             Column5.HeaderText="Список учеников";
+            Column5.MinimumWidth=10;
             Column5.Name="Column5";
             Column5.Resizable=DataGridViewTriState.True;
             Column5.SortMode=DataGridViewColumnSortMode.Automatic;
@@ -148,15 +153,18 @@
             // Column3
             // 
             Column3.HeaderText="Средняя успеваемость";
+            Column3.MinimumWidth=10;
             Column3.Name="Column3";
             // 
             // Column4
             // 
             Column4.HeaderText="Средняя посещаемость";
+            Column4.MinimumWidth=10;
             Column4.Name="Column4";
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.ImageScalingSize=new Size(32, 32);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { удалитьКлассToolStripMenuItem });
             contextMenuStrip1.Name="contextMenuStrip1";
             contextMenuStrip1.Size=new Size(153, 26);
@@ -195,7 +203,7 @@
             AutoScaleDimensions=new SizeF(7F, 15F);
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Info;
-            ClientSize=new Size(1156, 421);
+            ClientSize=new Size(1150, 421);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(comboBox1);

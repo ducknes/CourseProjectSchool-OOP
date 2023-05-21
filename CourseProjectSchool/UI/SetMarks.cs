@@ -50,6 +50,10 @@ namespace CourseProjectSchool.UI
         private void findMarks_Click(object sender, EventArgs e)
         {
             List<Student> students = Repository.FindStudensByClassName((string)comboBoxClass.SelectedItem).ToList();
+            if (students.Count == 0)
+            {
+                return;
+            }
             dataGridView1.Rows.Clear();
             for (int i = 2; i < dataGridView1.ColumnCount; i++)
             {
@@ -61,22 +65,44 @@ namespace CourseProjectSchool.UI
                 dataGridView1.Rows.Add(student.ID, student.Surname + " " + student.Name + " " + student.Patronymic);
             }
 
+            int countLessons = students[0].Marks[(string)comboBoxLesson.SelectedItem].Count;
+
+            for (int i = 0; i < countLessons; i++)
+            {
+                DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
+                column.HeaderText = $"Занятие №{i + 1}";
+                column.Items.Add("н");
+                column.Items.Add("-");
+                column.Items.Add("2");
+                column.Items.Add("3");
+                column.Items.Add("4");
+                column.Items.Add("5");
+                dataGridView1.Columns.Add(column);
+            }
+
+            int row = 0;
             foreach (var student in students)
             {
                 List<int> marks = student.Marks[(string)comboBoxLesson.SelectedItem];
+
                 for (int i = 0; i < marks.Count; i++)
                 {
-                    DataGridViewComboBoxColumn column = new DataGridViewComboBoxColumn();
-                    column.HeaderText = $"Занятие №{i+1}";
-                    column.Items.Add("н");
-                    column.Items.Add("-");
-                    column.Items.Add("2");
-                    column.Items.Add("3");
-                    column.Items.Add("4");
-                    column.Items.Add("5");
-                    dataGridView1.Columns.Add(column);
-                    dataGridView1.Rows[i].Cells[i+2].Value = marks[i].ToString();
+                    int mark = marks[i];
+                    switch (mark)
+                    {
+                        case 0:
+                            dataGridView1.Rows[row].Cells[i + 2].Value = "н";
+                            break;
+                        case 1:
+                            dataGridView1.Rows[row].Cells[i + 2].Value = "-";
+                            break;
+                        default:
+                            dataGridView1.Rows[row].Cells[i + 2].Value = mark.ToString();
+                            break;
+                    }
+                   
                 }
+                row++;
             }
         }
 
@@ -131,7 +157,6 @@ namespace CourseProjectSchool.UI
                     }
                 }
             }
-            await Repository.WriteToJson(Repository.Students, Repository.STUDENTS_JSON);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseProjectSchool.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,8 +30,10 @@ namespace CourseProjectSchoool
             this.Hide();
         }
 
-        private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+        private async void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
+            await Repository.WriteToJson(Repository.Classes, Repository.CLASS_JSON);
+            await Repository.WriteToJson(Repository.Students, Repository.STUDENTS_JSON);
             Application.Exit();
         }
 

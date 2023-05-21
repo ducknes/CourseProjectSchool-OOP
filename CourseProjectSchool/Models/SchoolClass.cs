@@ -11,6 +11,9 @@ namespace CourseProjectSchool.Models
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
+        public float AverageAttendance { get; set; }
+        public float AveragePerformance { get; set; }
+
         [JsonIgnore]
         public static List<string> Lessons { get; set; } = new List<string>() { "Математика", "Русский язык","Информатика", "Физика", "Английский язык"};
 

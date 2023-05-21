@@ -49,6 +49,8 @@ namespace CourseProjectSchoool
                     dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
                     dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
                     dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
+                    dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageClassPerformance(item.ID);
+                    dataGridView1.Rows[iterator].Cells[5].Value = Repository.GetAverageClassAttendance(item.ID);
                     iterator++;
                 }
             }
@@ -63,6 +65,8 @@ namespace CourseProjectSchoool
         private void СlassRecord_Load(object sender, EventArgs e)
         {
             UpdateTable();
+            comboBox1.Items.Add("Успеваемость > 4.5");
+            comboBox1.Items.Add("Помещаемость > 85");
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -88,6 +92,8 @@ namespace CourseProjectSchoool
                 dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
                 dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
                 dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
+                dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageClassPerformance(item.ID);
+                dataGridView1.Rows[iterator].Cells[5].Value = Repository.GetAverageClassAttendance(item.ID);
                 iterator++;
             }
         }
@@ -124,6 +130,23 @@ namespace CourseProjectSchoool
         {
             SetMarks setMarks = new();
             setMarks.Show();
+        }
+
+        private void sortViaPerformance_Click(object sender, EventArgs e)
+        {
+            List<SchoolClass> schoolClasses = Repository.GetSortedClasses().ToList();
+            dataGridView1.Rows.Clear();
+            int iterator = 0;
+            foreach (var item in schoolClasses)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
+                dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
+                dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
+                dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageClassPerformance(item.ID);
+                dataGridView1.Rows[iterator].Cells[5].Value = Repository.GetAverageClassAttendance(item.ID);
+                iterator++;
+            }
         }
     }
 }
