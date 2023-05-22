@@ -63,7 +63,7 @@
             Controls.Add(richTextBox1);
             Icon=(Icon)resources.GetObject("$this.Icon");
             Name="Report";
-            Text="Report";
+            Text="Отчет";
             Load+=Report_Load;
             ResumeLayout(false);
         }

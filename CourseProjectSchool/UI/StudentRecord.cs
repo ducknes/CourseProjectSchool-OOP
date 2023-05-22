@@ -179,7 +179,7 @@ namespace CourseProjectSchoool
                 {
                     dataGridView1.Rows.Add();
                     dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
-                    dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
+                    dataGridView1.Rows[iterator].Cells[1].Value = item.Surname + " " + item.Name + " " + item.Patronymic;
                     dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
                     dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
                     dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
@@ -197,8 +197,8 @@ namespace CourseProjectSchoool
                 {
                     dataGridView1.Rows.Add();
                     dataGridView1.Rows[iterator].Cells[0].Value = item.ID;
-                    dataGridView1.Rows[iterator].Cells[1].Value = item.Name;
-                    dataGridView1.Rows[iterator].Cells[2].Value = Repository.CountStudents(item.Name);
+                    dataGridView1.Rows[iterator].Cells[1].Value = item.Surname + " " + item.Name + " " + item.Patronymic;
+                    dataGridView1.Rows[iterator].Cells[2].Value = item.ClassName;
                     dataGridView1.Rows[iterator].Cells[4].Value = Repository.GetAverageStudentPerformance(item.ID);
                     dataGridView1.Rows[iterator].Cells[5].Value = Repository.CountAverageAttendance(item.ID);
                     iterator++;

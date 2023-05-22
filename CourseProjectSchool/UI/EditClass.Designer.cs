@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditClass));
             editClassName=new TextBox();
             label1=new Label();
             editNewClass=new Button();
@@ -81,6 +82,7 @@
             Controls.Add(editClassName);
             Controls.Add(label1);
             Controls.Add(editNewClass);
+            Icon=(Icon)resources.GetObject("$this.Icon");
             Name="EditClass";
             StartPosition=FormStartPosition.CenterScreen;
             Text="Редактировать класс";

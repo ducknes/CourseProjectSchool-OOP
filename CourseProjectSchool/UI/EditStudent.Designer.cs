@@ -150,7 +150,7 @@
             Icon=(Icon)resources.GetObject("$this.Icon");
             Name="EditStudent";
             StartPosition=FormStartPosition.CenterScreen;
-            Text="EditStudent";
+            Text="Редактирование ученика";
             ResumeLayout(false);
             PerformLayout();
         }
